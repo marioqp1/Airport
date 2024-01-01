@@ -3,7 +3,7 @@ package com.sw.airport.airport.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserEntity {
 
     @Id
@@ -19,22 +20,26 @@ public class UserEntity {
     @Column(name = "user_id", nullable = false)
     private Long id;
     private String name;
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+    @Column(name = "password",nullable = false)
+    private String password;
     @Column(name = "mobile_num", nullable = false)
     private String mobileNum;
     @Column(name = "national_id", nullable = false, unique = true)
     private String nationalId;
-    @OneToOne(cascade = CascadeType.ALL)//fetch = FetchType.LAZY
-    @JoinColumn(name = "fk_user_luggage_id")
-    private UserLuggage userLuggage;
-    @OneToMany(mappedBy = "user")
-    private List<Request> requests = new ArrayList<>();
-    @OneToOne(mappedBy = "user")
-    private UserExtraLuggage userExtraLuggage;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Flights>flights = new ArrayList<>();
 
-
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "luggage_id", referencedColumnName = "id")
+    private UserLuggageEntity userLuggageEntity;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "extra_luggage_id", referencedColumnName = "id")
+    private UserExtraLuggageEntity userExtraLuggageEntity;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<RequestEntity> requestEntities = new LinkedList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<FlightsEntity>flights = new LinkedList<>();
 
 }

@@ -1,22 +1,18 @@
 package com.sw.airport.airport.services;
 
+import com.sw.airport.airport.dto.ApiResponse;
 import com.sw.airport.airport.dto.UsersDto;
-import com.sw.airport.airport.entities.UserLuggage;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UsersDto> getAllUsers();
-    // TODO
-    // create user
-    UsersDto createUser(UsersDto usersDto);
-    UsersDto updateUser(Long id,UsersDto usersDto);
-    void deleteUser(Long id);
-    UsersDto getUser(Long id);
-   // UsersDto updateUserLuggage(Long id, UserLuggage userLuggage);
+    ApiResponse<UsersDto> createUser(UsersDto usersDto);
+    ApiResponse<UsersDto> updateUser(Long userId, UsersDto usersDto);
+    void deleteUser(Long userId);
+    ApiResponse<List<UsersDto>> getUsers();
+    ApiResponse<UsersDto> getUser(Long userId);
 
-    // update user
-    // delete user
+
 
 }

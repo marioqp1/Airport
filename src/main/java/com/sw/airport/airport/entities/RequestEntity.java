@@ -15,19 +15,23 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Request {
+public class RequestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_id", nullable = false)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "weight")
     private int weight;
+
     @Column(name = "price")
     private float price;
-    @OneToMany(mappedBy = "request")
-    private List<RequestStatusAndFees> requestStatusAndFees = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "request_id")
+    private List<RequestStatusAndFeesEntity> requestStatusAndFeeEntities = new ArrayList<>();
 
 }

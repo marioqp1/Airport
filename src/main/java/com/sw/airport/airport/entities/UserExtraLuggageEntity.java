@@ -14,14 +14,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserExtraLuggage {
+public class UserExtraLuggageEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     private Long id;
     @Column(name = "extra_weight")
-    private int extraWeight;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private Integer extraWeight;
 }

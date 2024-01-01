@@ -12,15 +12,13 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLuggage {
+public class UserLuggageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_luggage_id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
-    @OneToOne(mappedBy = "userLuggage")
-    private UserEntity user;
     @Column(name = "weight", nullable = false)
-    private int weight;
+    private Integer weight;
 
 }

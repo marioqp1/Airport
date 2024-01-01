@@ -14,11 +14,17 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Flights {
+public class FlightsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "airport_id")
+    private Long airportId;
 
     @Column(name = "destination")
     private String destination;
@@ -34,13 +40,5 @@ public class Flights {
 
     @Column(name = "airport_name")
     private String airportName;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
-
-    @ManyToOne
-    @JoinColumn(name = "airport_id")
-    private Airport airport;
 
 }

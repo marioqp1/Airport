@@ -1,9 +1,9 @@
 package com.sw.airport.airport.repostories;
 
-import com.sw.airport.airport.entities.Country;
+import com.sw.airport.airport.entities.CountryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CountryRepository extends JpaRepository<Country,Long> {
+public interface CountryRepository extends JpaRepository<CountryEntity,Long> {
 }

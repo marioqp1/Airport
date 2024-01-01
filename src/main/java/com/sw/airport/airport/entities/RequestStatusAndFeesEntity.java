@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class RequestStatusAndFees {
+public class RequestStatusAndFeesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,7 +23,7 @@ public class RequestStatusAndFees {
     @Column(name = "fees")
     private float fees;
 
-    @ManyToOne
-    @JoinColumn(name = "request_id")
-    private Request request;
+    @Column(name = "request_id")
+    private Long requestId;
+
 }
