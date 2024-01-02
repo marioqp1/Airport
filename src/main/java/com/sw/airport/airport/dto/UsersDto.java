@@ -15,6 +15,7 @@ public class UsersDto {
     private Long id;
     @NotBlank(message = "Name Can`t be Null")
     private String name;
+    @NotBlank(message = "Name Can`t be Null")
     private String email;
     @NotBlank(message = "Password Can`t be Null")
     private String password;
@@ -22,7 +23,7 @@ public class UsersDto {
     private String mobileNum;
     @NotBlank(message = "NationalId Can`t be Null")
     private String nationalId;
-    private List<RequestEntity> requestEntity;//make this  dto class mff
-    private UserLuggageEntity userLuggageEntity;// this too mff
+    private List<RequestEntity> requestDto;
+    private UserLuggageEntity userLuggageDto;
 
 }

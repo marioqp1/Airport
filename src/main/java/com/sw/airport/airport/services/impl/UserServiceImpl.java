@@ -1,8 +1,7 @@
 package com.sw.airport.airport.services.impl;
 
-import com.sw.airport.airport.dto.ApiResponse;
-import com.sw.airport.airport.dto.ApiResponseBuilder;
-import com.sw.airport.airport.dto.UsersDto;
+import com.sw.airport.airport.dto.*;
+import com.sw.airport.airport.entities.RequestEntity;
 import com.sw.airport.airport.entities.UserEntity;
 import com.sw.airport.airport.repostories.UserRepository;
 import com.sw.airport.airport.services.UserService;
@@ -92,6 +91,24 @@ public class UserServiceImpl implements UserService {
         List<UsersDto>userDtolist = new ArrayList<>();
         List<UserEntity>userEntityList = userRepository.findAll();
         for (UserEntity user:userEntityList) {
+            List<RequestDto> requestDtoList = new ArrayList<>();
+            List<RequestEntity>requestEntityList = user.getRequestEntities();
+//            for (int i = 0; i < requestEntityList.size(); i++) {
+//
+//                    requestDtoList.add(
+//                            RequestDto.builder()
+//                                    .id(requestEntityList.get(i).getId())
+//                                    .userId(requestEntityList.get(i).getUserId())
+//                                    .weight(requestEntityList.get(i).getWeight())
+//                                    .price(requestEntityList.get(i).getPrice())
+//                                    .requestStatusAndFeesDtos(requestEntityList.get(i).getRequestStatusAndFeeEntities())
+//                                    .build()
+//                    );
+//
+//            }
+//            UserLuggageDto.builder().id(user.getUserLuggageEntity().getId())
+//                    .weight(user.getUserLuggageEntity().getWeight())
+//                    .build()
             userDtolist.add(
                     UsersDto
                             .builder()
@@ -100,8 +117,8 @@ public class UserServiceImpl implements UserService {
                             .name(user.getName())
                             .mobileNum(user.getMobileNum())
                             .nationalId(user.getNationalId())
-                            .requestEntity(user.getRequestEntities())
-                            .userLuggageEntity(user.getUserLuggageEntity())
+                            .requestDto(user.getRequestEntities())
+                            .userLuggageDto(user.getUserLuggageEntity())
                             .build()
             );
         }
@@ -127,6 +144,24 @@ public class UserServiceImpl implements UserService {
         builder.setMessage("success");
         builder.setStatusCode(200);
         builder.setSuccess(true);
+        List<RequestDto> requestDtoList = new ArrayList<>();
+        List<RequestEntity>requestEntityList = user.getRequestEntities();
+//        for (int i = 0; i < requestEntityList.size(); i++) {
+//
+//            requestDtoList.add(
+//                    RequestDto.builder()
+//                            .id(requestEntityList.get(i).getId())
+//                            .userId(requestEntityList.get(i).getUserId())
+//                            .weight(requestEntityList.get(i).getWeight())
+//                            .price(requestEntityList.get(i).getPrice())
+//                            .requestStatusAndFeesDtos(requestEntityList.get(i).getRequestStatusAndFeeEntities())
+//                            .build()
+//            );
+
+//        }
+//        UserLuggageDto.builder().id(user.getUserLuggageEntity().getId())
+//                .weight(user.getUserLuggageEntity().getWeight())
+//                .build()
         builder.setEntity(
                 UsersDto
                         .builder()
@@ -135,8 +170,8 @@ public class UserServiceImpl implements UserService {
                         .name(user.getName())
                         .mobileNum(user.getMobileNum())
                         .nationalId(user.getNationalId())
-                        .requestEntity(user.getRequestEntities())
-                        .userLuggageEntity(user.getUserLuggageEntity())
+                        .requestDto(user.getRequestEntities())
+                        .userLuggageDto(user.getUserLuggageEntity())
                         .build()
         );
         log.info("Get User Request Ended for id:{}", userId);

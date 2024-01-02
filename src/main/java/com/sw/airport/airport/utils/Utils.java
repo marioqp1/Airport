@@ -21,7 +21,6 @@ public class Utils {
 
     public static  String getMd5(String input) {
         try {
-
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
